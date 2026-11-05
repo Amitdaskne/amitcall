@@ -1,10 +1,14 @@
 <resources>
     <style name="DialKey">
-        <item name="android:layout_width">76dp</item>
-        <item name="android:layout_height">76dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/dial_key_height</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:layout_margin">5dp</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">27sp</item>
         <item name="android:textColor">#111111</item>
         <item name="android:background">@drawable/bg_key</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
     </style>
 </resources>
