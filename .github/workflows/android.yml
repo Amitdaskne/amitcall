@@ -16,7 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup JDK
+      - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -29,17 +29,20 @@ jobs:
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
-        with:
-          cmdline-tools-version: '12266719'
-          packages: |
-            platform-tools
-            platforms;android-35
-            build-tools;35.0.0
-          accept-android-sdk-licenses: true
+
+      - name: Accept SDK Licenses
+        run: yes | sdkmanager --licenses || true
+
+      - name: Install Android SDK Packages
+        run: |
+          sdkmanager --install "platform-tools"
+          sdkmanager --install "platforms;android-35"
+          sdkmanager --install "build-tools;35.0.0"
 
       - name: Verify SDK
         run: |
           sdkmanager --list_installed
+          java -version
 
       - name: Build APK
         run: gradle assembleDebug
